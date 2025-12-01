@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-prova
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-prova
+  template:
+    metadata:
+      labels:
+        app: devops-prova
+    spec:
+      containers:
+        - name: devops-prova
+          image: gabriel04alves/devops-prova
+          ports:
+            - containerPort: 8000

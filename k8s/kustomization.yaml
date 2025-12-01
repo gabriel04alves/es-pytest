@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+images:
+- name: devops-prova
+  newName: gabriel04alves/devops-prova
+  newTag: e77ed9eea2dc9b750612827a5dcff1fb82f0c14e
+- name: gabriel04alves/devops-prova
+  newName: gabriel04alves/devops-prova

@@ -1,4 +1,4 @@
-name: prova-devops
+name: es-pytest
 on: [push]
 jobs:
   check-application:
@@ -28,4 +28,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: gabriel04alves/devops-prova:${{ github.sha }}
+          tags: gabriel04alves/es-pytest:${{ github.sha }}

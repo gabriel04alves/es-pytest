@@ -17,7 +17,7 @@ jobs:
       - name: Update kustomization.yaml
         run: |
           cd k8s
-          kustomize edit set image devops-prova=gabriel04alves/devops-prova:$GITHUB_SHA
+          kustomize edit set image es-pytest=gabriel04alves/es-pytest:$GITHUB_SHA
 
       - name: Commit changes
         run: |

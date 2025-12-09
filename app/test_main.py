@@ -27,9 +27,9 @@ def test_square_too_large():
 def test_double_without_validation():
     """Uso simples de query param sem validação extra."""
 
-    response = client.get("/double", params={"x": 4})
+    response = client.get("/double", params={"x": 8})
     assert response.status_code == 200
-    assert response.json() == {"result": 8}
+    assert response.json() == {"result": 16}
 
 
 def test_double_validated_in_range():

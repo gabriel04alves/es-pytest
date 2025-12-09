@@ -98,12 +98,12 @@ Acesse [http://localhost:8000](http://localhost:8000)
 > A aplicação é simples, mas os endpoints foram desenhados para permitir escrever **testes unitários**
 > que cobrem casos de sucesso **e** de erro/validação.
 
-| Método | Rota          | Descrição rápida                                                                                                                                                                                                            |
-| ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | ------------------------------------------------- |
-| `GET`  | `/`           | Health-check simples: retorna `{ "message": "Hello World!!!" }`.                                                                                                                                                            |
-| `GET`  | `/square/{x}` | Retorna `{ "result": x * x }`. Se `                                                                                                                                                                                         | x   | > 10000`, retorna **400** com `"x is too large"`. |
-| `GET`  | `/double`     | Usa query params. `?x=4` retorna `{ "result": 8 }`. Com `validated=true`, só aceita `-100 <= x <= 100`; fora disso retorna **422**.                                                                                         |
-| `GET`  | `/stats`      | Recebe vários `numbers` por query (`/stats?numbers=1&numbers=2&numbers=3`) e retorna contagem, soma, média, min e max. Quando os parâmetros obrigatórios não são enviados, o FastAPI retorna **422** com erro de validação. |
+| Método | Rota          | Descrição rápida                                                                                                                                                               |
+| ------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- | ------------------------------------------------- |
+| `GET`  | `/`           | Health-check simples: retorna `{ "message": "Hello World!!!" }`.                                                                                                               |
+| `GET`  | `/square/{x}` | Retorna `{ "result": x * x }`. Se `                                                                                                                                            | x   | > 10000`, retorna **400** com `"x is too large"`. |
+| `GET`  | `/double`     | `4` retorna `{ "result": 8 }`. Com `validated=true`, só aceita `-100 <= x <= 100`; fora disso retorna **422**.                                                                 |
+| `GET`  | `/stats`      | `1,2,3` Recebe vários numbers e retorna contagem, soma, média, min e max. Quando os parâmetros obrigatórios não são enviados, o FastAPI retorna **422** com erro de validação. |
 
 Os testes em `app/test_main.py` verificam, por exemplo:
 

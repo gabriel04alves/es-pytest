@@ -21,14 +21,10 @@ def square(x: int):
     return {"result": x**2}
 
 
-@app.get("/double")
-def double(
-    x: int = Query(..., description="Valor a ser dobrado"),
-    validated: bool = Query(False, description="Se True, valida intervalo de x"),
-):
+@app.get("/double/{x}")
+def double(x: int, validated: bool = False):
     """Dobra um valor inteiro com uma lógica um pouco mais elaborada.
 
-    - Usa query params em vez de path params.
     - Quando `validated=True`, só aceita valores entre -100 e 100.
     """
 
@@ -40,26 +36,31 @@ def double(
     return {"result": x * 2}
 
 
-@app.get("/stats")
-def stats(numbers: list[int] = Query(..., description="Lista de inteiros")):
+@app.get("/stats/{numbers}")
+def stats(numbers: str):
     """Calcula estatísticas simples sobre uma lista de inteiros.
 
-    Exemplo: `/stats?numbers=1&numbers=2&numbers=3`
+    Exemplo: `/stats/1,2,3`
     """
 
-    if not numbers:
+    try:
+        number_list = [int(n.strip()) for n in numbers.split(",")]
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid number format")
+
+    if not number_list:
         raise HTTPException(status_code=400, detail="numbers must not be empty")
 
-    total = sum(numbers)
-    count = len(numbers)
+    total = sum(number_list)
+    count = len(number_list)
     average = total / count
 
     return {
         "count": count,
         "total": total,
         "average": average,
-        "min": min(numbers),
-        "max": max(numbers),
+        "min": min(number_list),
+        "max": max(number_list),
     }
 
 
